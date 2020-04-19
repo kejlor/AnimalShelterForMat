@@ -37,18 +37,8 @@ public class AnimalShelter {
     animalList.remove(cow);
     animalList.add(anotherCow);
 
-        TreeMap<Integer, String> sortedAnimalListByAge = new TreeMap<>();
-        sortedAnimalListByAge.put(dog.age(), dog.name());
-        sortedAnimalListByAge.put(anotherDog.age(), anotherDog.name());
-        sortedAnimalListByAge.put(cat.age(), cat.name());
-        sortedAnimalListByAge.put(horse.age(), horse.name());
-        sortedAnimalListByAge.put(cow.age(), cow.name());
-        sortedAnimalListByAge.put(anotherCow.age(), anotherCow.name());
+        Map<Integer, List<Animal>> animalMap = animalList.stream().collect(Collectors.groupingBy(Animal::age));
 
-        Set<Map.Entry<Integer, String>> entries = sortedAnimalListByAge.entrySet();
-
-        for (Map.Entry<Integer, String> entry : entries) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        }
+        animalMap.forEach((k, v) -> System.out.println(k + " " + v));
     }
 }
